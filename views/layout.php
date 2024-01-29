@@ -41,6 +41,7 @@
                         <a href="/blog">Blog</a>
                         <a href="/contacto">Contacto</a>
                         <?php if($auth){ ?>
+                            <a href="/admin">Gestionar</a>
                             <a href="/logout">Cerrar sesion</a>
                         <?php } else { ?>
                             <a href="/login">Iniciar sesion</a>   
