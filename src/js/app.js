@@ -14,7 +14,7 @@ function darkMode() {
 }
 
 function restoreDarkMode() {
-    const isDarkModeEnabled = localStorage.getItem('darkMode') === 'true';
+    const isDarkModeEnabled = getCookie('darkMode') === 'true' || localStorage.getItem('darkMode') === 'true';
 
     if (isDarkModeEnabled) {
         document.body.classList.add('dark-mode');
@@ -23,9 +23,24 @@ function restoreDarkMode() {
 
 function saveDarkModeState() {
     const isDarkModeEnabled = document.body.classList.contains('dark-mode');
+    setCookie('darkMode', isDarkModeEnabled);
     localStorage.setItem('darkMode', isDarkModeEnabled);
 }
 
+function setCookie(name, value) {
+    document.cookie = `${name}=${value}; SameSite=None; Secure; path=/`;
+}
+
+function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for (const cookie of cookies) {
+        const [cookieName, cookieValue] = cookie.trim().split('=');
+        if (cookieName === name) {
+            return cookieValue;
+        }
+    }
+    return null;
+}
 
 function eventListeners() {
     const mobileMenu = document.querySelector(".mobile-menu");
@@ -34,9 +49,7 @@ function eventListeners() {
 
     // Muestra campos Condicionales
     const metodoContacto = document.querySelectorAll('input[name="contacto[contacto]"]');
-    metodoContacto.forEach(input => input.addEventListener("click", mostrarMetodosContacto))
-
-    
+    metodoContacto.forEach(input => input.addEventListener("click", mostrarMetodosContacto));
 }
 
 function navegacionResponsive() {
@@ -52,7 +65,6 @@ function navegacionResponsive() {
 
 function mostrarMetodosContacto(e) {
     const contactoDiv = document.querySelector("#contacto");
-
 
     if(e.target.value === "telefono") {
         contactoDiv.innerHTML = `
@@ -72,5 +84,5 @@ function mostrarMetodosContacto(e) {
         <label for="email">E-Mail</label>
         <input type="email" placeholder="Tu Email" id="email" name="contacto[email]" required>
         `;
-}
+    }
 }
