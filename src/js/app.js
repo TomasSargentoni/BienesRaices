@@ -1,38 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
-
     eventListeners();
-
     darkMode();
+    restoreDarkMode();
 });
 
 function darkMode() {
-
-    const prefiereDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
-
-    // console.log(prefiereDarkMode.matches);
-
-    if (prefiereDarkMode.matches) {
-        document.body.classList.add("dark-mode")
-    }
-    else {
-        document.body.classList.remove("dark-mode")
-    }
-
-    prefiereDarkMode.addEventListener("change", function() {
-        if (prefiereDarkMode.matches) {
-            document.body.classList.add("dark-mode")
-        }
-        else {
-            document.body.classList.remove("dark-mode")
-        } 
-    })
-
     const botonDarkMode = document.querySelector(".dark-mode-boton");
 
     botonDarkMode.addEventListener("click", function() {
-        document.body.classList.toggle("dark-mode")
+        document.body.classList.toggle("dark-mode");
+        saveDarkModeState(); // Guarda el estado del modo oscuro al cambiarlo
     });
 }
+
+function restoreDarkMode() {
+    const isDarkModeEnabled = localStorage.getItem('darkMode') === 'true';
+
+    if (isDarkModeEnabled) {
+        document.body.classList.add('dark-mode');
+    }
+}
+
+function saveDarkModeState() {
+    const isDarkModeEnabled = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkModeEnabled);
+}
+
 
 function eventListeners() {
     const mobileMenu = document.querySelector(".mobile-menu");
