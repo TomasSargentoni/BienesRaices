@@ -2,12 +2,6 @@
     "builds": [
       { "src": "package.json", "use": "@vercel/node" },
       { "src": "composer.json", "use": "@vercel/php" }
-    ],
-    "build": {
-      "env": {
-        "COMPOSER_AUTH": "your_composer_auth_key"
-      },
-      "command": "npm install && composer install"
-    }
+    ]
   }
   
