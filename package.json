@@ -4,8 +4,7 @@
   "description": "Curso Desarrollo Web Completo",
   "main": "gulpfile.js",
   "scripts": {
-    "dev": "gulp",
-    "build": "npm install && composer install"
+    "dev": "gulp"
   },
   "author": "Juan De La Torre",
   "license": "ISC",
@@ -26,10 +25,5 @@
     "gulp-webp": "^4.0.1",
     "sass": "^1.49.9",
     "terser": "^4.8.0"
-  },
-  "dependencies": {
-    "chokidar": "^3.6.0",
-    "svgo": "^3.3.2",
-    "uuid": "^10.0.0"
   }
 }
