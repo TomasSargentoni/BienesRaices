@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "dev": "gulp",
-    "build": "gulp build"
+    "build": "npm install && composer install"
   },
   "author": "Juan De La Torre",
   "license": "ISC",
